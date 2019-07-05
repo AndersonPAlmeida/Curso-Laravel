@@ -18,7 +18,7 @@ module.exports = "<mat-toolbar color='primary'>\r\n    <span>Projeto: Laravel + 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxLayout=\"column\" fxLayoutAlign=\"space-around left\" >\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\n        <mat-form-field fxFlex=\"50\">\n            <input matInput placeholder=\"Seu nome\" [(ngModel)]=\"dados.post.nome\">\n            <mat-hint>Digite aqui seu nome</mat-hint>\n        </mat-form-field>\n        <mat-form-field fxFlex=\"40\">\n            <input matInput placeholder=\"Seu email\" [(ngModel)]=\"dados.post.email\">\n            <mat-hint>Digite aqui seu email</mat-hint>\n        </mat-form-field>\n    </div>\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\n        <mat-form-field fxFlex=\"50\">\n            <input matInput placeholder=\"Titulo da mensagem\" [(ngModel)]=\"dados.post.titulo\">            \n        </mat-form-field>\n        <mat-form-field fxFlex=\"40\">\n            <input matInput placeholder=\"Subtitulo de mensagem\" [(ngModel)]=\"dados.post.subtitulo\">            \n        </mat-form-field>\n    </div>\n\n    <mat-form-field>\n        <textarea matInput placeholder=\"Deixei aqui sua mensagem\" [(ngModel)]=\"dados.post.mensagem\"></textarea>\n    </mat-form-field>\n</div>\n\n<input type=\"file\" style=\"display: none\" (change)=\"mudouarquivo($event)\" #fileinput>\n<button mat-stroked-button color=\"primary\" (click)=\"fileinput.click()\">\n    <mat-icon>add_a_photo</mat-icon>\n    Adicionar uma foto\n</button>\n<p *ngIf=\"nomearquivo!= ''\" >\n    <strong>Arquivo: </strong>{{nomearquivo}}\n    <mat-icon color=\"primary\">done</mat-icon>\n</p>\n<br><br>\n\n<div style=\"text-align: center;\">\n    <button mat-button color=\"primary\" (click)=\"salvar()\">Ok</button>\n    <button mat-button color=\"warn\" (click)=\"cancelar()\">Cancelar</button>\n</div>"
+module.exports = "<div fxLayout=\"column\" fxLayoutAlign=\"space-around left\" >\r\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\r\n        <mat-form-field fxFlex=\"50\">\r\n            <input matInput placeholder=\"Seu nome\" [(ngModel)]=\"dados.post.nome\">\r\n            <mat-hint>Digite aqui seu nome</mat-hint>\r\n        </mat-form-field>\r\n        <mat-form-field fxFlex=\"40\">\r\n            <input matInput placeholder=\"Seu email\" [(ngModel)]=\"dados.post.email\">\r\n            <mat-hint>Digite aqui seu email</mat-hint>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\r\n        <mat-form-field fxFlex=\"50\">\r\n            <input matInput placeholder=\"Titulo da mensagem\" [(ngModel)]=\"dados.post.titulo\">            \r\n        </mat-form-field>\r\n        <mat-form-field fxFlex=\"40\">\r\n            <input matInput placeholder=\"Subtitulo de mensagem\" [(ngModel)]=\"dados.post.subtitulo\">            \r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <mat-form-field>\r\n        <textarea matInput placeholder=\"Deixei aqui sua mensagem\" [(ngModel)]=\"dados.post.mensagem\"></textarea>\r\n    </mat-form-field>\r\n</div>\r\n\r\n<input type=\"file\" style=\"display: none\" (change)=\"mudouarquivo($event)\" #fileinput>\r\n<button mat-stroked-button color=\"primary\" (click)=\"fileinput.click()\">\r\n    <mat-icon>add_a_photo</mat-icon>\r\n    Adicionar uma foto\r\n</button>\r\n<p *ngIf=\"nomearquivo!= ''\" >\r\n    <strong>Arquivo: </strong>{{nomearquivo}}\r\n    <mat-icon color=\"primary\">done</mat-icon>\r\n</p>\r\n<br><br>\r\n\r\n<div style=\"text-align: center;\">\r\n    <button mat-button color=\"primary\" (click)=\"salvar()\">Ok</button>\r\n    <button mat-button color=\"warn\" (click)=\"cancelar()\">Cancelar</button>\r\n</div>"
 
 /***/ }),
 
@@ -29,7 +29,7 @@ module.exports = "<div fxLayout=\"column\" fxLayoutAlign=\"space-around left\" >
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card fxFlex class=\"card\">\n  <mat-card-header>\n    <div mat-card-avatar></div>\n    <mat-card-title>{{post.titulo}}</mat-card-title>\n    <mat-card-subtitle>{{post.subtitulo}}</mat-card-subtitle>\n  </mat-card-header>\n  <img mat-card-image src=\"/storage/{{post.arquivo}}\" alt=\"Photo of a Shiba Inu\">\n  <mat-card-content>\n    <p>\n      {{post.mensagem}}\n    </p>\n  </mat-card-content>\n  <mat-card-actions>\n    <button mat-button>LIKE</button>\n    <button mat-button>SHARE</button>\n  </mat-card-actions>\n</mat-card>\n"
+module.exports = "<mat-card fxFlex class=\"card\">\r\n  <mat-card-header>\r\n    <div mat-card-avatar></div>\r\n    <mat-card-title>{{post.titulo}}</mat-card-title>\r\n    <mat-card-subtitle>{{post.subtitulo}}</mat-card-subtitle>\r\n  </mat-card-header>\r\n  <img mat-card-image src=\"/storage/{{post.arquivo}}\" alt=\"Photo of a Shiba Inu\">\r\n  <mat-card-content>\r\n    <p>\r\n      {{post.mensagem}}\r\n    </p>\r\n  </mat-card-content>\r\n  <mat-card-actions>\r\n    <button mat-button colot=\"primary\" (click)=\"like()\">LIKE</button>\r\n    <button mat-button color=\"accent\" (click)=\"apagar()\">APAGAR</button>\r\n    <mat-icon color=\"warn\" *ngIf=\"post.likes>0\" [matBadge]=\"post.likes\" matBadgePosition=\"above after\" matBadgeColor=\"warn\" matBadgeOverlap=\"false\">favorite</mat-icon>\r\n  </mat-card-actions>\r\n</mat-card>\r\n"
 
 /***/ }),
 
@@ -323,8 +323,7 @@ let PostService = class PostService {
         uploadData.append('subtitulo', post.subtitulo);
         uploadData.append('mensagem', post.mensagem);
         uploadData.append('arquivo', file, file.name);
-        this.http.post("/api", uploadData, { reportProgress: true, observe: 'events' })
-            .subscribe((event) => {
+        this.http.post("/api", uploadData, { reportProgress: true, observe: 'events' }).subscribe((event) => {
             if (event.type == _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpEventType"].Response) {
                 // console.log(event);
                 let p = event.body;
@@ -334,6 +333,18 @@ let PostService = class PostService {
                 console.log('UploadProgress');
                 console.log(event);
             }
+        });
+    }
+    like(id) {
+        this.http.get('/api/like/' + id).subscribe((event) => {
+            let p = this.posts.find((p) => p.id == id);
+            p.likes = event.likes;
+        });
+    }
+    apagar(id) {
+        console.log("Id é: " + id);
+        this.http.get('/api/' + id).subscribe((event) => {
+            console.log(event);
         });
     }
 };
@@ -409,14 +420,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post */ "./src/app/post.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _post_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../post.service */ "./src/app/post.service.ts");
+
 
 
 
 let PostComponent = class PostComponent {
-    constructor() { }
+    constructor(postService) {
+        this.postService = postService;
+    }
     ngOnInit() {
     }
+    like() {
+        this.postService.like(this.post.id);
+    }
+    apagar() {
+        this.postService.apagar(this.post.id);
+    }
 };
+PostComponent.ctorParameters = () => [
+    { type: _post_service__WEBPACK_IMPORTED_MODULE_3__["PostService"] }
+];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"])(),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _post__WEBPACK_IMPORTED_MODULE_1__["Post"])
@@ -427,7 +451,7 @@ PostComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./post.component.html */ "./node_modules/raw-loader/index.js!./src/app/post/post.component.html"),
         styles: [__webpack_require__(/*! ./post.component.css */ "./src/app/post/post.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_post_service__WEBPACK_IMPORTED_MODULE_3__["PostService"]])
 ], PostComponent);
 
 
@@ -498,7 +522,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Anderson\Documents\Curso Laravel\lar_angular\resources\meuapp\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Anderson\Documents\Curso-Laravel\lar_angular\resources\meuapp\src\main.ts */"./src/main.ts");
 
 
 /***/ })
