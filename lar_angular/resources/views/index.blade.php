@@ -5,17 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <base href="/">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
         
         <title>Laravel</title>
         
     </head>
     <body>
         <app-root></app-root>
-        <script type="text/javascript" src="{{ asset('js/runtime.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/es2015-polyfills.js')}}" nomodule></script>
-        <script type="text/javascript" src="{{ asset('js/polyfills.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/styles.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/vendor.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
+        
+        <script src="{{ asset('js/runtime-es2015.js')}}" type="module"></script>
+        <script src="{{ asset('js/polyfills-es2015.js')}}" type="module"></script>
+        <script src="{{ asset('js/runtime-es5.js')}}" nomodule></script>
+        <script src="{{ asset('js/polyfills-es5.js')}}" nomodule></script>
+        <script src="{{ asset('js/styles-es2015.js')}}" type="module"></script>
+        <script src="{{ asset('js/styles-es5.js')}}" nomodule></script>
+        <script src="{{ asset('js/vendor-es2015.js')}}" type="module"></script>
+        <script src="{{ asset('js/main-es2015.js')}}" type="module"></script>
+        <script src="{{ asset('js/vendor-es5.js')}}" nomodule></script>
+        <script src="{{ asset('js/main-es5.js')}}" nomodule></script>
     </body>
 </html>

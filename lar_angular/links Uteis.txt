@@ -1,0 +1,5 @@
+https://www.npmjs.com/search?q=flex-layou
+https://tburleson-layouts-demos.firebaseapp.com/#/docs
+https://material.angular.io/components/card/examples
+https://material.io/tools/icons/?style=baseline
+https://angular.io/cli/update
