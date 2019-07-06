@@ -50,7 +50,7 @@ class PostControlador extends Controller
     {
         $post = Post::find($id);
         if (isset($post)) {
-            Strorage::disk('public')->delete($post->arquivo);
+            Storage::disk('public')->delete($post->arquivo);
             $post->delete();
             return 204;
         }

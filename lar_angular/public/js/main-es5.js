@@ -18,7 +18,7 @@ module.exports = "<mat-toolbar color='primary'>\r\n    <span>Projeto: Laravel + 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxLayout=\"column\" fxLayoutAlign=\"space-around left\" >\r\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\r\n        <mat-form-field fxFlex=\"50\">\r\n            <input matInput placeholder=\"Seu nome\" [(ngModel)]=\"dados.post.nome\">\r\n            <mat-hint>Digite aqui seu nome</mat-hint>\r\n        </mat-form-field>\r\n        <mat-form-field fxFlex=\"40\">\r\n            <input matInput placeholder=\"Seu email\" [(ngModel)]=\"dados.post.email\">\r\n            <mat-hint>Digite aqui seu email</mat-hint>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\r\n        <mat-form-field fxFlex=\"50\">\r\n            <input matInput placeholder=\"Titulo da mensagem\" [(ngModel)]=\"dados.post.titulo\">            \r\n        </mat-form-field>\r\n        <mat-form-field fxFlex=\"40\">\r\n            <input matInput placeholder=\"Subtitulo de mensagem\" [(ngModel)]=\"dados.post.subtitulo\">            \r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <mat-form-field>\r\n        <textarea matInput placeholder=\"Deixei aqui sua mensagem\" [(ngModel)]=\"dados.post.mensagem\"></textarea>\r\n    </mat-form-field>\r\n</div>\r\n\r\n<input type=\"file\" style=\"display: none\" (change)=\"mudouarquivo($event)\" #fileinput>\r\n<button mat-stroked-button color=\"primary\" (click)=\"fileinput.click()\">\r\n    <mat-icon>add_a_photo</mat-icon>\r\n    Adicionar uma foto\r\n</button>\r\n<p *ngIf=\"nomearquivo!= ''\" >\r\n    <strong>Arquivo: </strong>{{nomearquivo}}\r\n    <mat-icon color=\"primary\">done</mat-icon>\r\n</p>\r\n<br><br>\r\n\r\n<div style=\"text-align: center;\">\r\n    <button mat-button color=\"primary\" (click)=\"salvar()\">Ok</button>\r\n    <button mat-button color=\"warn\" (click)=\"cancelar()\">Cancelar</button>\r\n</div>"
+module.exports = "<div fxLayout=\"column\" fxLayoutAlign=\"space-around left\" >\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\n        <mat-form-field fxFlex=\"50\">\n            <input matInput placeholder=\"Seu nome\" [(ngModel)]=\"dados.post.nome\">\n            <mat-hint>Digite aqui seu nome</mat-hint>\n        </mat-form-field>\n        <mat-form-field fxFlex=\"40\">\n            <input matInput placeholder=\"Seu email\" [(ngModel)]=\"dados.post.email\">\n            <mat-hint>Digite aqui seu email</mat-hint>\n        </mat-form-field>\n    </div>\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-between\">\n        <mat-form-field fxFlex=\"50\">\n            <input matInput placeholder=\"Titulo da mensagem\" [(ngModel)]=\"dados.post.titulo\">            \n        </mat-form-field>\n        <mat-form-field fxFlex=\"40\">\n            <input matInput placeholder=\"Subtitulo de mensagem\" [(ngModel)]=\"dados.post.subtitulo\">            \n        </mat-form-field>\n    </div>\n\n    <mat-form-field>\n        <textarea matInput placeholder=\"Deixei aqui sua mensagem\" [(ngModel)]=\"dados.post.mensagem\"></textarea>\n    </mat-form-field>\n</div>\n\n<input type=\"file\" style=\"display: none\" (change)=\"mudouarquivo($event)\" #fileinput>\n<button mat-stroked-button color=\"primary\" (click)=\"fileinput.click()\">\n    <mat-icon>add_a_photo</mat-icon>\n    Adicionar uma foto\n</button>\n<p *ngIf=\"nomearquivo!= ''\" >\n    <strong>Arquivo: </strong>{{nomearquivo}}\n    <mat-icon color=\"primary\">done</mat-icon>\n</p>\n<br><br>\n\n<div style=\"text-align: center;\">\n    <button mat-button color=\"primary\" (click)=\"salvar()\">Ok</button>\n    <button mat-button color=\"warn\" (click)=\"cancelar()\">Cancelar</button>\n</div>"
 
 /***/ }),
 
@@ -362,9 +362,12 @@ var PostService = /** @class */ (function () {
         });
     };
     PostService.prototype.apagar = function (id) {
-        console.log("Id é: " + id);
-        this.http.get('/api/' + id).subscribe(function (event) {
-            console.log(event);
+        var _this = this;
+        this.http.delete('/api/' + id).subscribe(function (event) {
+            // console.log(event);
+            var i = _this.posts.findIndex(function (p) { return p.id == id; });
+            if (i >= 0)
+                _this.posts.splice(i, 1);
         });
     };
     PostService.ctorParameters = function () { return [
@@ -546,7 +549,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Anderson\Documents\Curso-Laravel\lar_angular\resources\meuapp\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Anderson\Documents\Curso Laravel\lar_angular\resources\meuapp\src\main.ts */"./src/main.ts");
 
 
 /***/ })
